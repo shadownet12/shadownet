@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سایه‌نت | شبیه‌ساز دارک‌وب</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #050505;
+      color: #c9ffc9;
+      font-family: monospace;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        #ffffff03 0px,
+        #ffffff03 1px,
+        transparent 1px,
+        transparent 4px
+      );
+      z-index: 5;
+    }
+
+    header {
+      border-bottom: 1px solid #174d17;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #080b08;
+    }
+
+    .logo {
+      color: #32ff32;
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .status {
+      color: #ff4d4d;
+      font-size: 13px;
+    }
+
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 35px 20px;
+    }
+
+    .warning {
+      border: 1px solid #8d2424;
+      background: #260d0d;
+      color: #ff9b9b;
+      padding: 14px;
+      border-radius: 6px;
+      margin-bottom: 25px;
+      line-height: 1.9;
+    }
+
+    .terminal {
+      background: #020402;
+      border: 1px solid #1d701d;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 25px #00ff3320;
+      margin-bottom: 28px;
+    }
+
+    .terminal-title {
+      color: #72ff72;
+      margin-bottom: 15px;
+    }
+
+    .prompt {
+      color: #42ff42;
+    }
+
+    input {
+      width: 75%;
+      padding: 13px;
+      background: #080d08;
+      color: #baffba;
+      border: 1px solid #287a28;
+      outline: none;
+      font-family: monospace;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 13px 20px;
+      background: #113d11;
+      border: 1px solid #39c639;
+      color: #adffad;
+      cursor: pointer;
+      font-family: monospace;
+      border-radius: 4px;
+      margin-right: 6px;
+    }
+
+    button:hover {
+      background: #1b651b;
+    }
+
+    #output {
+      color: #8fff8f;
+      margin-top: 16px;
+      min-height: 22px;
+    }
+
+    h2 {
+      color: #56ff56;
+      font-size: 19px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #0a100a;
+      border: 1px solid #1b4e1b;
+      padding: 18px;
+      border-radius: 7px;
+      transition: .2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #42ff42;
+      box-shadow: 0 0 15px #00ff3325;
+    }
+
+    .card h3 {
+      color: #7dff7d;
+      margin-top: 0;
+      font-size: 17px;
+    }
+
+    .fake-link {
+      color: #79cfff;
+      font-size: 13px;
+      word-break: break-all;
+    }
+
+    .tag {
+      display: inline-block;
+      color: #111;
+      background: #43e043;
+      padding: 3px 7px;
+      font-size: 11px;
+      margin-top: 12px;
+      border-radius: 3px;
+    }
+
+    footer {
+      text-align: center;
+      color: #527052;
+      padding: 30px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 600px) {
+      input {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      button {
+        margin: 4px 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">☠ سایه‌نت // ShadowNet</div>
+    <div class="status">● اتصال شبیه‌سازی‌شده</div>
+  </header>
+
+  <main>
+    <div class="warning">
+      ⚠️ هشدار نمایشی: این صفحه فقط برای شوخی، فیلم، تئاتر و پروژه‌های آموزشی ساخته شده است.
+      هیچ اتصال واقعی به دارک‌وب یا شبکه‌های ناشناس وجود ندارد.
+    </div>
+
+    <section class="terminal">
+      <div class="terminal-title">ترمینال جست‌وجوی سایه‌نت</div>
+
+      <div>
+        <span class="prompt">guest@shadow:~$</span>
+        <input id="search" placeholder="مثلاً: راز گمشده، گربه هکری..." />
+      </div>
+
+      <br>
+
+      <button onclick="searchSite()">جست‌وجوی مخفی</button>
+      <button onclick="fakeConnect()">برقراری اتصال</button>
+
+      <div id="output"></div>
+    </section>
+
+    <h2>فهرست‌های مرموز امروز</h2>
+
+    <section class="grid">
+      <div class="card">
+        <h3>آرشیو رازهای بی‌اهمیت</h3>
+        <p>اطلاعات محرمانه‌ای درباره اینکه چه کسی آخرین تکه پیتزا را خورده است.</p>
+        <div class="fake-link">shadow://pizza-secret-404</div>
+        <span class="tag">کاملاً جعلی</span>
+      </div>
+
+      <div class="card">
+        <h3>بازار جوراب‌های گمشده</h3>
+        <p>مرکز تبادل جوراب‌هایی که بعد از شست‌وشو ناپدید شده‌اند.</p>
+        <div class="fake-link">shadow://lost-socks-market</div>
+        <span class="tag">مشکوک</span>
+      </div>
+
+      <div class="card">
+        <h3>اتاق گفت‌وگوی هکرهای مبتدی</h3>
+        <p>محل تجمع افرادی که هنوز رمز وای‌فای خودشان را یادشان نیست.</p>
+        <div class="fake-link">shadow://noob-hackers-lounge</div>
+        <span class="tag">سطح خطر: صفر</span>
+      </div>
+
+      <div class="card">
+        <h3>دفتر اسناد سری</h3>
+        <p>پرونده‌های طبقه‌بندی‌شده درباره خواب ماندن و دیر رسیدن به مدرسه.</p>
+        <div class="fake-link">shadow://classified-nonsense</div>
+        <span class="tag">پرونده بسته</span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    این وب‌سایت یک شبیه‌سازی تخیلی است؛ هیچ داده‌ای جمع‌آوری نمی‌شود.
+  </footer>
+
+  <script>
+    function searchSite() {
+      const value = document.getElementById("search").value.trim();
+      const output = document.getElementById("output");
+
+      if (!value) {
+        output.textContent = "خطا: چیزی برای جست‌وجو وارد نشده است.";
+        return;
+      }
+
+      output.textContent = "در حال رمزگشایی «" + value + "» ... نتیجه پیدا شد: احتمالاً گربه‌ها پشت ماجرا هستند! 😼";
+    }
+
+    function fakeConnect() {
+      const output = document.getElementById("output");
+      output.textContent = "اتصال به شبکه سایه برقرار نشد؛ چون این سایت واقعی نیست! 🚫";
+    }
+  </script>
+
+</body>
+</html>
+
